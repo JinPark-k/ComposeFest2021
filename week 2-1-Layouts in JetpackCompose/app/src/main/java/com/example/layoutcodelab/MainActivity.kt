@@ -19,6 +19,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.layout.AlignmentLine
 import androidx.compose.ui.layout.FirstBaseline
 import androidx.compose.ui.layout.Layout
@@ -261,8 +262,7 @@ fun LayoutsCodelab() {
     ){ innerPadding ->
         BodyContent(
             Modifier
-                .padding(innerPadding)
-                .padding(8.dp))
+                .padding(innerPadding))
     }
 }
 
@@ -278,7 +278,12 @@ fun BodyContent(modifier: Modifier = Modifier) {
         Text("vertically.")
         Text("We've done it by hand!")
     }*/
-    Row(modifier = modifier.horizontalScroll(rememberScrollState())) {
+    Row(modifier = modifier
+        .background(color = Color.LightGray, shape = RectangleShape)
+        .padding(16.dp)
+        .size(200.dp)
+        .horizontalScroll(rememberScrollState())
+    ) {
         StaggeredGrid {
             for (topic in topics) {
                 Chip(text = topic, modifier = Modifier.padding(8.dp))
